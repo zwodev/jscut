@@ -330,6 +330,8 @@ popoverHover('#gcodeZeroCenter', "top", "Changes the X and Y Offset values so th
 popoverHover('#gcodeReturn00', "top", "Move the tool to 0,0 after the last operation.");
 popoverHover('#gcodeOffsetX', "top", "Amount to add to gcode X coordinates");
 popoverHover('#gcodeOffsetY', "top", "Amount to add to gcode Y coordinates");
+popoverHover('#gcodeScaleX', "top", "Correction X scale factor");
+popoverHover('#gcodeScaleY', "top", "Correction Y scale factor");
 popoverHover('#gcodeMinX', "top", "Minimum X coordinate in gcode. If this is out of range of your machine then adjust X Offset.");
 popoverHover('#gcodeMaxX', "top", "Maximum X coordinate in gcode. If this is out of range of your machine then adjust X Offset.");
 popoverHover('#gcodeMinY', "top", "Minimum Y coordinate in gcode. If this is out of range of your machine then adjust Y Offset.");

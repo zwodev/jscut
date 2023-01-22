@@ -26,6 +26,8 @@ function GcodeConversionViewModel(options, miscViewModel, materialViewModel, too
     self.gcodeFilename = ko.observable("gcode.gcode");
     self.offsetX = ko.observable(0);
     self.offsetY = ko.observable(0);
+    self.scaleX = ko.observable(1);
+    self.scaleY = ko.observable(1);
     self.returnTo00 = ko.observable(false);
 
     self.unitConverter.add(self.offsetX);
@@ -145,6 +147,8 @@ function GcodeConversionViewModel(options, miscViewModel, materialViewModel, too
                 useZ:           op.camOp() == "V Pocket",
                 offsetX:        Number(self.offsetX()),
                 offsetY:        Number(self.offsetY()),
+                scaleX:         Number(self.scaleX()),
+                scaleY:         Number(self.scaleY()),        
                 decimal:        4,
                 topZ:           topZ,
                 botZ:           topZ - cutDepth,
@@ -185,6 +189,8 @@ function GcodeConversionViewModel(options, miscViewModel, materialViewModel, too
 
     self.offsetX.subscribe(self.generateGcode);
     self.offsetY.subscribe(self.generateGcode);
+    self.scaleX.subscribe(self.generateGcode);
+    self.scaleY.subscribe(self.generateGcode);
     self.returnTo00.subscribe(self.generateGcode);
     toolModel.angle.subscribe(self.generateGcode);
 
@@ -194,6 +200,8 @@ function GcodeConversionViewModel(options, miscViewModel, materialViewModel, too
             'gcodeFilename': self.gcodeFilename(),
             'offsetX': self.offsetX(),
             'offsetY': self.offsetY(),
+            'scaleX': self.scaleX(),
+            'scaleY': self.scaleY()
         };
     }
 
@@ -208,6 +216,8 @@ function GcodeConversionViewModel(options, miscViewModel, materialViewModel, too
             f(json.gcodeFilename, self.gcodeFilename);
             f(json.offsetX, self.offsetX);
             f(json.offsetY, self.offsetY);
+            f(json.scaleX, self.scaleX);
+            f(json.scaleY, self.scaleY);
         }
     }
 }

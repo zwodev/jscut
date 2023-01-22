@@ -330,6 +330,8 @@ jscut.priv.cam = jscut.priv.cam || {};
     //      useZ:           Use Z coordinates in paths? (optional, defaults to false)
     //      offsetX:        Offset X (gcode units)
     //      offsetY:        Offset Y (gcode units)
+    //      scaleX:         Scale X (gcode units)
+    //      scaleY:         Scale Y (gcode units)
     //      decimal:        Number of decimal places to keep in gcode
     //      topZ:           Top of area to cut (gcode units)
     //      botZ:           Bottom of area to cut (gcode units)
@@ -348,6 +350,8 @@ jscut.priv.cam = jscut.priv.cam || {};
         var useZ = namedArgs.useZ;
         var offsetX = namedArgs.offsetX;
         var offsetY = namedArgs.offsetY;
+        var scaleX = namedArgs.scaleX;
+        var scaleY = namedArgs.scaleY;
         var decimal = namedArgs.decimal;
         var topZ = namedArgs.topZ;
         var botZ = namedArgs.botZ;
@@ -379,15 +383,15 @@ jscut.priv.cam = jscut.priv.cam || {};
             'G1 Z' + tabZ.toFixed(decimal) + rapidFeedGcode + '\r\n';
 
         function getX(p) {
-            return p.X * scale + offsetX;
+            return p.X * scale * scaleX + offsetX;
         }
 
         function getY(p) {
-            return -p.Y * scale + offsetY;
+            return -p.Y * scale  * scaleY + offsetY;
         }
 
         function convertPoint(p, useZ) {
-            var result = ' X' + (p.X * scale + offsetX).toFixed(decimal) + ' Y' + (-p.Y * scale + offsetY).toFixed(decimal);
+            var result = ' X' + (p.X * scale * scaleX + offsetX).toFixed(decimal) + ' Y' + (-p.Y * scale * scaleY + offsetY).toFixed(decimal);
             if (useZ)
                 result += ' Z' + (p.Z * scale + topZ).toFixed(decimal);
             return result;
